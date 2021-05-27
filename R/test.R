@@ -11,7 +11,7 @@ make <- function(seq) {
 }
 
 callback <- function() {
-  cli::cli_verbatim("So far so good")
+  cli::builtin_theme()
 }
 
 fail <- function() {
