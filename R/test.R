@@ -11,7 +11,7 @@ make <- function(seq) {
   .Call(fish_init, asNamespace("redfish"))
 }
 
-callback <- function(env) {
+callback <- function() {
   cli::cli_verbatim("So far so good")
 }
 

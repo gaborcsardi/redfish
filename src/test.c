@@ -47,16 +47,15 @@ const void* red_fish_Dataptr_or_null(SEXP x) {
   return DATAPTR_OR_NULL(data1);
 }
 
-SEXP fish_update(SEXP env) {
-  SEXP call = PROTECT(Rf_lang2(Rf_install("callback"), env));
+SEXP fish_update() {
+  SEXP call = PROTECT(Rf_lang1(Rf_install("callback")));
   SEXP res = PROTECT(Rf_eval(call, fish_env));
   UNPROTECT(2);
   return res;
 }
 
 int red_fish_Elt(SEXP x, R_xlen_t i) {
-  SEXP env = R_altrep_data2(x);
-  fish_update(env);
+  fish_update();
   return (int) (i + 1);
 }
 
