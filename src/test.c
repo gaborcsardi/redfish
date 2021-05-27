@@ -5,7 +5,6 @@
 #include <R_ext/Altrep.h>
 
 R_altrep_class_t red_fish_t;
-SEXP fish_env = 0;
 
 SEXP make_fish(SEXP seq) {
   SEXP val = R_new_altrep(red_fish_t, seq, R_NilValue);
@@ -48,7 +47,7 @@ const void* red_fish_Dataptr_or_null(SEXP x) {
 
 SEXP fish_update() {
   SEXP call = PROTECT(Rf_lang1(Rf_install("callback")));
-  SEXP res = PROTECT(Rf_eval(call, fish_env));
+  SEXP res = PROTECT(Rf_eval(call, R_GlobalEnv));
   UNPROTECT(2);
   return res;
 }
@@ -58,12 +57,6 @@ int red_fish_Elt(SEXP x, R_xlen_t i) {
   return (int) (i + 1);
 }
 
-SEXP fish_init(SEXP env) {
-  fish_env = env;
-  R_PreserveObject(fish_env);
-  return R_NilValue;
-}
-  
 static void init_altrep(DllInfo *dll) {
   R_altrep_class_t cls = R_make_altinteger_class("red_fish_t", "redfish", dll);
   red_fish_t = cls;
@@ -80,14 +73,13 @@ static void init_altrep(DllInfo *dll) {
   R_set_altinteger_Elt_method(red_fish_t, red_fish_Elt);
   // R_set_altinteger_Get_region_method(red_fish_t, red_fish_Get_region);
   // R_set_altinteger_Sum_method(red_fish_t, red_fish_Sum);
-  //  R_set_altinteger_Max_method(red_fish_t, red_fish_Max);
+  // R_set_altinteger_Max_method(red_fish_t, red_fish_Max);
   // R_set_altinteger_Min_method(red_fish_t, red_fish_Min);
   // R_set_altinteger_No_NA_method(red_fish_t, red_fish_No_NA);
   // R_set_altinteger_Is_sorted_method(red_fish_t, red_fish_Is_sorted);  
 }
 
 static const R_CallMethodDef callMethods[]  = {
-  { "fish_init",   (DL_FUNC) fish_init,   1 },
   { "make_fish",   (DL_FUNC) make_fish,   1 },
   { NULL, NULL, 0 }
 };

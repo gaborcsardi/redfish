@@ -3,12 +3,11 @@
 NULL
 
 make <- function(seq) {
-  foo <- "bar"
-  .Call(make_fish, seq_along(seq))
+  .Call(make_fish, seq)
 }
 
 .onLoad <- function(libname, pkgname) {
-  .Call(fish_init, asNamespace("redfish"))
+  .GlobalEnv$callback <- callback
 }
 
 callback <- function() {
@@ -21,4 +20,3 @@ fail <- function() {
     print(i)
   })
 }
-
