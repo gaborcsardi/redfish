@@ -4,7 +4,7 @@ NULL
 
 make <- function(seq) {
   foo <- "bar"
-  .Call(make_fish, seq_along(seq), environment())
+  .Call(make_fish, seq_along(seq))
 }
 
 .onLoad <- function(libname, pkgname) {

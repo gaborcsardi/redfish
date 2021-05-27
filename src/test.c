@@ -7,8 +7,8 @@
 R_altrep_class_t red_fish_t;
 SEXP fish_env = 0;
 
-SEXP make_fish(SEXP seq, SEXP env) {
-  SEXP val = R_new_altrep(red_fish_t, seq, env);
+SEXP make_fish(SEXP seq) {
+  SEXP val = R_new_altrep(red_fish_t, seq, R_NilValue);
   return val;
 }
 
@@ -19,8 +19,7 @@ R_xlen_t red_fish_Length(SEXP x) {
 
 SEXP red_fish_Duplicate(SEXP x, Rboolean deep) {
   SEXP data1 = R_altrep_data1(x);
-  SEXP bar = R_altrep_data2(x);
-  return make_fish(duplicate(data1), duplicate(bar));
+  return make_fish(duplicate(data1));
 }
 
 Rboolean red_fish_Inspect(SEXP x,
@@ -89,7 +88,7 @@ static void init_altrep(DllInfo *dll) {
 
 static const R_CallMethodDef callMethods[]  = {
   { "fish_init",   (DL_FUNC) fish_init,   1 },
-  { "make_fish",   (DL_FUNC) make_fish,   2 },
+  { "make_fish",   (DL_FUNC) make_fish,   1 },
   { "fish_update", (DL_FUNC) fish_update, 1 },
   { NULL, NULL, 0 }
 };
