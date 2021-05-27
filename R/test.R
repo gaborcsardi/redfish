@@ -12,13 +12,13 @@ make <- function(seq) {
 }
 
 callback <- function(env) {
-  cli::cli_alert_success("So far so good")
+  cli::cli_text("So far so good: {foo}", .envir = env)
 }
 
 fail <- function() {
-  let5 <- letters[1:2]
+  let5 <- letters[1:5]
   lapply(make(let5), function(i) {
-    typeof(i)
+    download.file(let5[i], tempfile())
   })
 }
 
