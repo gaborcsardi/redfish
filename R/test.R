@@ -12,13 +12,13 @@ make <- function(seq) {
 }
 
 callback <- function(env) {
-  cli::cli_text("So far so good: {foo}", .envir = env)
+  cli::cli_verbatim("So far so good")
 }
 
 fail <- function() {
   let5 <- letters[1:5]
   lapply(make(let5), function(i) {
-    download.file(let5[i], tempfile())
+    print(i)
   })
 }
 
