@@ -89,7 +89,6 @@ static void init_altrep(DllInfo *dll) {
 static const R_CallMethodDef callMethods[]  = {
   { "fish_init",   (DL_FUNC) fish_init,   1 },
   { "make_fish",   (DL_FUNC) make_fish,   1 },
-  { "fish_update", (DL_FUNC) fish_update, 1 },
   { NULL, NULL, 0 }
 };
 

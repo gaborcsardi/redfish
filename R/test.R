@@ -22,7 +22,3 @@ fail <- function() {
   })
 }
 
-simple_callback <- function() {
-  foo <- "bar"
-  .Call(fish_update, environment())
-}
