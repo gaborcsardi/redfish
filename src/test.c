@@ -54,7 +54,7 @@ SEXP fish_update() {
 
 int red_fish_Elt(SEXP x, R_xlen_t i) {
   fish_update();
-  return (int) (i + 1);
+  return 1;
 }
 
 static void init_altrep(DllInfo *dll) {

@@ -11,7 +11,7 @@ make <- function(seq) {
 }
 
 callback <- function() {
-  cli::builtin_theme()
+  loadNamespace("Matrix")
 }
 
 fail <- function() {
