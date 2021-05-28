@@ -8,7 +8,7 @@ Either an ALTREP bug, or possibly I am doing something wrong.
 This happens with every R version with ALTREP support, from 3.5.0 to
 4.2.0 (current R-devel). This is macOS Mojave, if that matters.
 
-1. Install the refish package. (`load_all()` tends not to crash.)
+1. Install the redfish package. (`load_all()` tends not to crash.)
 
 2. Run `redfish:::fail()` from the command line:
 
